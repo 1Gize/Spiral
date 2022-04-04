@@ -1,5 +1,5 @@
 object Spiral extends App{
-  spiral(4).foreach{c => c.foreach{ s => print(s + " ")}
+  spiral(5).foreach{c => c.foreach{ s => print(s + " ")}
     println()
   }
   def spiral(n: Int)={
@@ -10,9 +10,10 @@ object Spiral extends App{
     var lastX = 0
     var lastY = 0
     var y = 0
-    while(y <= n) {
+    while(y < n) {
         direction match {
           case "right" =>
+            println("right")
             if(y < 1){
               var x = 0
               while(x < n){
@@ -45,6 +46,7 @@ object Spiral extends App{
 
             }
           case "down" =>
+            println("down")
 
             var x = 0
             while(x + y  < n){
@@ -63,14 +65,14 @@ object Spiral extends App{
             lastX  = lastX + x
 
           case "left" =>
+            println("left")
             var x = 0
-
             while(x + y < n){
               counter += 1
               arr(lastX)(lastY - x - 1 ) = counter
               x += 1
             }
-            lastY = lastY - (x+y) + 1
+            lastY = lastY - x
             if(iteration == 2 ){
               iteration = 1
               y += 1
@@ -81,15 +83,17 @@ object Spiral extends App{
             }
 
           case "up" =>
+            println("up")
             var x = 0
-
+            println("lastX = " + lastX)
+            println("lastY = " + lastY)
             while((x + y) < n){
               counter += 1
              // println(x)
               arr(lastX - x - 1)(lastY) = counter
               x += 1
             }
-            lastX = y-x +1
+            lastX = lastX - x
 
             if(iteration == 2 ){
               iteration = 1
